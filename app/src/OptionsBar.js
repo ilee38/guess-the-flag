@@ -1,13 +1,8 @@
 import React, {Component} from 'react';
 import './OptionsBar.css';
 
-class OptionsBar extends Component{
-  constructor(props){
-    super(props);
-    this.state = {countryOptions : ['Mexico', 'USA', 'Germany', 'UK']};
-  }
-  render(){
-    const options = this.state.countryOptions.map((country, index) =>
+const OptionsBar = (props) => {
+    const options = props.countries.map((country, index) =>
       <label for="index" key="index">
         <input type="radio" id="index" name="choice" value="countryName" />
         {country}
@@ -18,6 +13,5 @@ class OptionsBar extends Component{
         {options}
       </div>
     );
-  }
 }
 export default OptionsBar;
