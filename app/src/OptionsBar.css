@@ -1,6 +1,4 @@
-.choiceBar{
-  display: flex;
-  justify-content: space-around;
-  margin-top: 1rem;
-
+.choiceBar label{
+  margin-right: 30px;
+  margin-left: 20px;
 }
