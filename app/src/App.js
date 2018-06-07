@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Navbar from './Navbar.js';
 import OptionsBar from './OptionsBar.js';
@@ -12,10 +11,11 @@ class App extends Component {
     this.state = {
       countryOptions : [],
       correctCountryName : '',
-      flagURL : "https://restcountries.eu/data/alb.svg",
+      flagURL : '',
       buttonOption : 'GUESS'
     };
     this.getOptions = this.getOptions.bind(this);
+    this.getChoice = this.getChoice.bind(this);
   }
 
   componentDidMount(){
@@ -24,22 +24,34 @@ class App extends Component {
     .then(data => data.json())  //get 1st promise and wait 'till it resolves and THEN return the actual data (as json)
     .then(countries => {        //here we now have the json data (inside countries)
       const options = this.getOptions(countries);
+      const correctChoice = this.getChoice(options);
       this.setState({
-        countryOptions : options,
+        countryOptions : options.map(obj => obj.name),
+        correctCountryName : correctChoice.name,
+        flagURL: correctChoice.flag
       });
     })
-    .catch((err) =>{
-      console.log(err);
-    });
-    //pick 4 random countries/flags and update state
+    .catch(err => console.log(err));
   }
 
+  /*
+   * Choose 4 countries from the array countries
+  */
   getOptions(countries){
     const arr = [];
     for(let i = 0; i < 4; i++){
-      arr.push(countries[i].name);
+      let j = Math.floor(Math.random() * Math.floor(countries.length));
+      arr.push(countries[j]);
     }
     return arr;
+  }
+
+  /*
+   * From the options array, choose one country
+  */
+  getChoice(options){
+    let i = Math.floor(Math.random() * Math.floor(options.length));
+    return options[i];
   }
 
   render() {

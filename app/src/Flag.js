@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Flag.css';
 
 const Flag = (props) => {
   return(
-      <div class="flag-pic">
+      <div className="flag-pic">
         <img src={props.flagImgURL} alt="country flag"/>
       </div>
     );

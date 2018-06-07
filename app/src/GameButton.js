@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './GameButton.css';
 
 const GameButton = (props) => {
   return(
-    <button name="button" class="button" >
+    <button name="button" className="button" >
       {props.buttonAction}
     </button>
   );
